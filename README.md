@@ -8,7 +8,7 @@ In the folder you want do manage the project in (create a project directory):
 
 Clone the repo to a different folder, then copy the contents into the newly created Leftward folder, overwriting everything you are propted to.
 
-From the Leftward folder: `git remote add origin https://github.com/justifiedfalsebeliefs/leftward` - `git reset origin/master` - `npm i`
+From the Leftward folder: `git remote add origin https://github.com/leftward-app/app` - `git reset --hard origin/master` - `npm i`
 
 ## Configure an Android AVD and launch the app
 
