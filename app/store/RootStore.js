@@ -20,6 +20,7 @@ export default class RootStore {
   testModalVisible = false;
   levelUpVisible = false;
   actionCompleteModalVisible = false;
+  alphaWelcomeModalVisible = false;
 
   constructor() {
     makeObservable(this, {
@@ -59,6 +60,8 @@ export default class RootStore {
       updateLevelUpVisible: action,
       actionCompleteModalVisible: observable,
       updateActionCompleteModalVisible: action,
+      alphaWelcomeModalVisible: observable,
+      updateAlphaWelcomeModalVisible: action,
     });
   }
 
@@ -206,5 +209,8 @@ export default class RootStore {
   }
   updateActionCompleteModalVisible(updateValue) {
     this.actionCompleteModalVisible = updateValue;
+  }
+  updateAlphaWelcomeModalVisible(updateValue) {
+    this.alphaWelcomeModalVisible = updateValue;
   }
 }

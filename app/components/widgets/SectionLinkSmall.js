@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout, Text, Button } from "@ui-kitten/components";
 import WidgetContainer from "./WidgetContainer";
-import AppIcon from "../AppIcon";
 
 function SectionLink({ image, title, buttonTitle, onPress }) {
   return (
@@ -27,7 +26,7 @@ function SectionLink({ image, title, buttonTitle, onPress }) {
           >
             {title}
           </Text>
-          <AppIcon name="no-image" size="small" />
+          {image}
         </Layout>
         <Button onPress={() => onPress()}>{buttonTitle}</Button>
       </Layout>

@@ -40,6 +40,7 @@ function RegisterScreen({ route, navigation }) {
         auth.logIn(data, true);
       });
       things.updateAppStateShouldUpdate(true);
+      things.updateAlphaWelcomeModalVisible(true);
     } catch (error) {
       setError(error.message);
     }

@@ -6,8 +6,8 @@ import AppIcon from "../AppIcon";
 function SectionLink({ image, title, buttonTitle, onPress }) {
   return (
     <WidgetContainer>
-      <Layout style={{ alignItems: "center", height: 295 }}>
-        <AppIcon name="no-image" size="small-medium" />
+      <Layout level="1" style={{ alignItems: "center", height: 295 }}>
+        <Layout level="1">{image}</Layout>
         <Text
           category="h1"
           style={{

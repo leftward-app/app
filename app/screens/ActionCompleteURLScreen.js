@@ -5,7 +5,7 @@ import telemetry from "../analytics/telemetry";
 import routes from "../navigation/routes";
 import { Layout, Button } from "@ui-kitten/components";
 import Screen from "../components/Screen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CompleteInBrowser from "../assets/svg/CompleteInBrowser";
 
 function ActionCompleteURLScreen({ route, navigation }) {
   const things = useContext(RootStoreContext);
@@ -44,11 +44,7 @@ function ActionCompleteURLScreen({ route, navigation }) {
     <Layout level="4" style={{ flex: 1 }}>
       <Screen back={true} navigation={navigation} paddingHorizontal={20}>
         <Layout level="4" style={{ alignItems: "center", paddingBottom: 30 }}>
-          <MaterialCommunityIcons
-            name="image-size-select-large"
-            size={300}
-            color="black"
-          />
+          {CompleteInBrowser(300, 200)}
           <Button
             status="info"
             onPress={() => handleCompleteInBrowserPress()}

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { RootStoreContext } from "../../store/RootStoreContext";
 import { observer } from "mobx-react-lite";
 import { Layout, Text } from "@ui-kitten/components";
-import ActionListVertical from "../widgets/actions/ActionListVertical";
+import ActionList from "../widgets/actions/ActionList";
 import SectionTitle from "../widgets/SectionTitle";
 
 function SavedSactionsStack({ navigation, style }) {
@@ -13,7 +13,11 @@ function SavedSactionsStack({ navigation, style }) {
     return (
       <Layout level="4" style={style}>
         <SectionTitle>Saved Actions</SectionTitle>
-        <ActionListVertical itemList={things.saved} navigation={navigation} />
+        <ActionList
+          itemList={things.saved}
+          navigation={navigation}
+          horizontal={false}
+        />
       </Layout>
     );
   }

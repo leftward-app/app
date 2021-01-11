@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { RootStoreContext } from "../../store/RootStoreContext";
 import { observer } from "mobx-react-lite";
 import { Layout, Text } from "@ui-kitten/components";
-import ActionListVertical from "../widgets/actions/ActionListVertical";
+import ActionList from "../widgets/actions/ActionList";
 import SectionTitle from "../widgets/SectionTitle";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppIcon from "../AppIcon";
 
 function CompletedActionsStack({ navigation, style }) {
   const things = useContext(RootStoreContext);
@@ -24,12 +24,6 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20, fontWeight: "bold" }}>
           Total Actions
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
         <Text category="h3">
           {things.progression.totalActionsCompletedCount}
         </Text>
@@ -54,12 +48,7 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20 }}>
           Environmental Justice
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
+        <AppIcon name="environment" size={20} style={{ marginRight: 20 }} />
         <Text category="h3">
           {actionsByCause["Environmental Justice"].count}
         </Text>
@@ -76,12 +65,7 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20 }}>
           Criminal Justice Reform
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
+        <AppIcon name="crime" size={24} style={{ marginRight: 20 }} />
         <Text category="h3">{actionsByCause["Legal Justice"].count}</Text>
       </Layout>
       <Layout
@@ -96,12 +80,7 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20 }}>
           LGBTQ+ Justice
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
+        <AppIcon name="lgbtq" size={24} style={{ marginRight: 20 }} />
         <Text category="h3">
           {actionsByCause["Gender and LGBTQ+ Justice"].count}
         </Text>
@@ -118,12 +97,7 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20 }}>
           Racial Justice
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
+        <AppIcon name="race" size={24} style={{ marginRight: 20 }} />
         <Text category="h3">{actionsByCause["Racial Justice"].count}</Text>
       </Layout>
       <Layout
@@ -138,15 +112,14 @@ function CompletedActionsStack({ navigation, style }) {
         <Text category="h5" style={{ marginRight: 20 }}>
           Economic Justice
         </Text>
-        <MaterialCommunityIcons
-          name="summit"
-          size={24}
-          color="black"
-          style={{ marginRight: 20 }}
-        />
+        <AppIcon name="economic" size={24} style={{ marginRight: 17 }} />
         <Text category="h3">{actionsByCause["Economic Justice"].count}</Text>
       </Layout>
-      <ActionListVertical itemList={things.completed} navigation={navigation} />
+      <ActionList
+        itemList={things.completed}
+        navigation={navigation}
+        horizontal={false}
+      />
     </Layout>
   );
 }

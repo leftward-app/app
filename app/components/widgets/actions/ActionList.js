@@ -4,7 +4,7 @@ import ActionCard from "./ActionCard";
 import routes from "../../../navigation/routes";
 import { Layout } from "@ui-kitten/components";
 
-function ActionList({ itemList, navigation }) {
+function ActionList({ itemList, navigation, horizontal }) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
@@ -16,7 +16,7 @@ function ActionList({ itemList, navigation }) {
   return (
     <FlatList
       style={{ flexGrow: 0 }}
-      horizontal={true}
+      horizontal={horizontal}
       data={itemList}
       keyExtractor={(item) => item.actionId.toString()}
       renderItem={({ item }) => (
@@ -24,11 +24,15 @@ function ActionList({ itemList, navigation }) {
           {fadeIn()}
           <ActionCard
             title={item.actionTitle}
+            cause={item.actionCause}
+            horizontal={horizontal}
             onPress={() => navigation.navigate(routes.ACTION_DETAILS, item)}
           />
         </Animated.View>
       )}
-      ItemSeparatorComponent={() => <Layout level="4" style={{ width: 10 }} />}
+      ItemSeparatorComponent={() => (
+        <Layout level="4" style={{ width: 10, height: 10 }} />
+      )}
     />
   );
 }

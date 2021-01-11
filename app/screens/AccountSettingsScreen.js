@@ -4,10 +4,10 @@ import { StyleSheet, Alert } from "react-native";
 import Screen from "../components/Screen";
 import AuthForm from "../components/AuthForm";
 import { Auth } from "aws-amplify";
-import { Button } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 
 function AccountSettingsScreen({ navigation }) {
-  // telemetry((eventTitle = "viewAccountSettingsScreen"));
+  telemetry((eventTitle = "viewAccountSettingsScreen"), (onMount = true));
 
   const [error, setError] = useState();
   const [emailVerified, setEmailVerified] = useState();
@@ -28,6 +28,7 @@ function AccountSettingsScreen({ navigation }) {
         "email",
         userInfo.code
       );
+      checkVerification();
       Alert.alert("Success!", "Email confirmed.", [{ text: "OK" }]);
     } catch (error) {
       setError(error.message);
@@ -49,33 +50,44 @@ function AccountSettingsScreen({ navigation }) {
   };
 
   return (
-    <>
-      <Screen>
-        {!emailVerified && (
+    <Screen
+      back={true}
+      scrolling={false}
+      navigation={navigation}
+      paddingHorizontal={20}
+    >
+      {!emailVerified && (
+        <Layout level="4" style={{ paddingBottom: 50 }}>
+          <Text category="h4" style={{ paddingBottom: 10 }}>
+            Verify Email
+          </Text>
+          <Button
+            style={{ marginBottom: 10 }}
+            onPress={() => Auth.verifyCurrentUserAttribute("email")}
+            color="secondary"
+          >
+            Send Confirmation Code
+          </Button>
           <AuthForm
             fields={["code"]}
             onSubmit={handleSubmit}
             submitTitle={"Confirm"}
             error={error}
           ></AuthForm>
-        )}
-
-        {!emailVerified && (
-          <Button
-            title="Send Confirmation Code"
-            onPress={() => Auth.verifyCurrentUserAttribute("email")}
-            color="secondary"
-          ></Button>
-        )}
-
+        </Layout>
+      )}
+      <Layout level="4">
+        <Text category="h4" style={{ paddingBottom: 10 }}>
+          Change Password
+        </Text>
         <AuthForm
           fields={["password", "newPassword", "newPasswordConfirmation"]}
           onSubmit={handleSubmitPassword}
           submitTitle={"Change Password"}
           error={error}
         ></AuthForm>
-      </Screen>
-    </>
+      </Layout>
+    </Screen>
   );
 }
 

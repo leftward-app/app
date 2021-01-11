@@ -41,24 +41,34 @@ import { Button } from "@ui-kitten/components";
 // ];
 
 function AccountScreen({ navigation }) {
-  telemetry("viewAccountScreen", true);
+  telemetry((eventTitle = "viewAccountScreen"), (onMount = true));
   const { user, logOut } = useAuth();
   const things = useContext(RootStoreContext);
 
   const handleValuesPress = async () => {
+    Linking.openURL(
+      "https://github.com/leftward-app/mission-style-guide/blob/main/mission.md"
+    ).catch((err) => console.error("Couldn't load page", err));
+  };
+
+  const handleAboutPress = async () => {
     Linking.openURL("https://leftward.app/").catch((err) =>
       console.error("Couldn't load page", err)
     );
   };
 
-  const handleSharePress = async () => {
-    await Share.share({
-      message: "Checkout the site Leftward.app",
-    });
-  };
+  // const handleSharePress = async () => {
+  //   await Share.share({
+  //     message: "Checkout the site Leftward.app",
+  //   });
+  // };
   return (
     <Screen scrolling={false} paddingHorizontal={20}>
-      <Button status={"info"} style={[styles.widgetSpacer, { marginTop: 50 }]}>
+      <Button
+        onPress={() => navigation.navigate(routes.SETTINGS)}
+        status={"info"}
+        style={[styles.widgetSpacer, { marginTop: 50 }]}
+      >
         Manage Account
       </Button>
       <Button
@@ -68,9 +78,16 @@ function AccountScreen({ navigation }) {
       >
         Our Values
       </Button>
-      <Button status={"success"} onPress={() => handleSharePress()}>
-        Share Leftward
+      <Button
+        status={"info"}
+        onPress={() => handleValuesPress()}
+        style={[styles.widgetSpacer]}
+      >
+        About Us
       </Button>
+      {/* <Button status={"success"} onPress={() => handleSharePress()}>
+        Share Leftward
+      </Button> */}
       <Layout
         level="4"
         style={{ flex: 1, justifyContent: "flex-end", marginBottom: 40 }}

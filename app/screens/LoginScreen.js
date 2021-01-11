@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import telemetry from "../analytics/telemetry";
+import React, { useState, useContext } from "react";
+import { RootStoreContext } from "../store/RootStoreContext";
 import { StyleSheet, View } from "react-native";
 import routes from "../navigation/routes";
 import AuthForm from "../components/AuthForm";
@@ -9,8 +9,8 @@ import useAuth from "../auth/useAuth";
 import { Layout, Button } from "@ui-kitten/components";
 
 function LoginScreen({ navigation }) {
-  // telemetry((eventTitle = "viewLoginScreen"));
-
+  telemetry((eventTitle = "viewLoginScreen"), (onMount = true));
+  const things = useContext(RootStoreContext);
   const auth = useAuth();
   const [error, setError] = useState();
 
@@ -18,7 +18,7 @@ function LoginScreen({ navigation }) {
     try {
       const result = await Auth.signIn(userInfo.username, userInfo.password);
       Auth.currentSession().then((data) => {
-        auth.logIn(data);
+        auth.logIn(data, (newUser = false));
       });
     } catch (error) {
       setError(error.message);
@@ -26,7 +26,12 @@ function LoginScreen({ navigation }) {
   };
 
   return (
-    <Screen>
+    <Screen
+      scrolling={false}
+      back={true}
+      navigation={navigation}
+      paddingHorizontal={20}
+    >
       <AuthForm
         fields={["username", "password"]}
         onSubmit={handleSubmit}

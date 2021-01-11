@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import telemetry from "../analytics/telemetry";
 import { Text } from "@ui-kitten/components";
 import Screen from "../components/Screen";
-import ActionListVertical from "../components/widgets/actions/ActionListVertical";
+import ActionList from "../components/widgets/actions/ActionList";
 import getData from "../data/getData";
 
 function ActionListingsScreen({ route, navigation }) {
@@ -33,7 +33,11 @@ function ActionListingsScreen({ route, navigation }) {
       >
         {route.params}
       </Text>
-      <ActionListVertical itemList={listings} navigation={navigation} />
+      <ActionList
+        itemList={listings}
+        navigation={navigation}
+        horizontal={false}
+      />
     </Screen>
   );
 }

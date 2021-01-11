@@ -82,7 +82,7 @@ function ActionDetailsScreen({ route, navigation }) {
 
   const renderStarIcon = () => (
     <TouchableWithoutFeedback onPress={() => handleStarIconPress()}>
-      <AppIcon name={starIcon} size={"miniscule"} color="black" />
+      <AppIcon name={starIcon} size={28} color="black" />
     </TouchableWithoutFeedback>
   );
 
@@ -95,7 +95,7 @@ function ActionDetailsScreen({ route, navigation }) {
         paddingHorizontal={20}
       >
         <Layout level="4" style={{ alignItems: "center", paddingBottom: 30 }}>
-          <AppIcon name="no-image" size="small-medium" />
+          <AppIcon name="no-image" size={150} />
           <Text category="h1" style={{ fontWeight: "bold", margin: 10 }}>
             {action.actionTitle}
           </Text>
@@ -110,7 +110,7 @@ function ActionDetailsScreen({ route, navigation }) {
                 marginLeft: 20,
               }}
             >
-              <AppIcon name="people" size={"quick-hit"} />
+              <AppIcon name="people" size={30} />
               <Text
                 category="s1"
                 style={{
